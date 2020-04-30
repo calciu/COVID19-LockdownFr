@@ -52,10 +52,10 @@ This dataset is licensed under the Creative Commons Attribution-NonCommercial-Sh
 
 Sophie B, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
 
-# Statistics Summary (v1.5)
+# Statistics Summary (v0.1)
 Number of Tweets : ** to come**
 
 # Inquiries
 If you have technical questions about the data collection, please contact Mihai Calciu at **mihai.calciu[at]univ-lille[dot]fr**.
 
-If you have any further questions about this dataset please contact Christophe Benavent at **christophe.benavent[at]gmail[dot]com **.
+If you have any further questions about this dataset please contact Christophe Benavent at **christophe.benavent[at]gmail[dot]com**.
