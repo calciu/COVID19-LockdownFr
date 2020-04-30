@@ -12,9 +12,8 @@ The associated paper to this repository can be found here: [#COVID-19: The First
 
 ## Data Organization
 The Tweet-IDs are organized as follows:
-* Tweet-ID files are stored in folders that indicate the year and month of the collection (YEAR-MONTH). 
-* Individual Tweet-ID files contain a collection of Tweet IDs, and the file names all follow the same structure, with a prefix “coronavirus-tweet-id-” followed by the YEAR-MONTH-DATE-HOUR. 
-* Note that Twitter returns Tweets in UTC, and thus all Tweet ID folders and file names are all in UTC as well. 
+* Tweet-ID files are stored in two folders ContainmentDays and ContainmentOther. The first has tweets collected with the containment day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the containment period.
+* Individual Tweet-ID files contain a collection of Tweet IDs, and the file names all follow the same structure, with a prefix “df_ids” followed by either the day for the first folder and by "confX" for the second.
 
 ## Notes About the Data
 A few notes about this data: 
@@ -50,7 +49,7 @@ python3 hydrate.py
 # Data Usage Agreement
 This dataset is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)). By using this dataset, you agree to abide by the stipulations in the license, remain in compliance with Twitter’s [Terms of Service](https://developer.twitter.com/en/developer-terms/agreement-and-policy), and cite the following manuscript: 
 
-Sophie B, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
+Sophie Balech, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
 
 # Statistics Summary (v0.1)
 Number of Tweets : ** to come**
