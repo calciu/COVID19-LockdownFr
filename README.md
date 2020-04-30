@@ -1,6 +1,6 @@
 # ContainmentDay (#ConfinementJour) COVID-19-TweetIDs
 
-The repository contains an ongoing collection of tweets IDs associated with the Containment period du to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 18, 2020. 
+The repository contains an ongoing collection of tweets IDs associated with the Containment period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 18, 2020. 
 
 We used the Twitter’s search API to gather on a daily basis Tweets defined by  hashtags #confinementJour1 to #confinementJour_n (that is ContainmentDay1 to n).
 
