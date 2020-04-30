@@ -58,4 +58,4 @@ Number of Tweets : ** to come**
 # Inquiries
 If you have technical questions about the data collection, please contact Mihai Calciu at **mihai.calciu[at]univ-lille[dot]fr**.
 
-If you have any further questions about this dataset please contact Christophe Benavent at **christophe[dot]benavent[at]gmail[dot]com **.
+If you have any further questions about this dataset please contact Christophe Benavent at **christophe.benavent[at]gmail[dot]com **.
