@@ -13,7 +13,7 @@ The associated paper to this repository can be found here: [#COVID-19: The First
 ## Data Organization
 The Tweet-IDs are organized as follows:
 * Tweet-ID files are stored in two folders ContainmentDays and ContainmentOther. The first has tweets collected with the containment day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the containment period.
-* Individual Tweet-ID files contain a collection of Tweet IDs, and the file names all follow the same structure, with a prefix “df_ids” followed by either the day for the first folder and by "confX" for the second.
+* Individual Tweet-ID files contain a collection of Tweet IDs, and the file names all follow the same structure, with a prefix “df_ids” followed by either "jX" indicating the day (jour) for the first folder and by "confX" meaning containement (confinement) for the second.
 
 ## Notes About the Data
 A few notes about this data: 
