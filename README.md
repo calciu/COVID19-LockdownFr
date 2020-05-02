@@ -17,12 +17,33 @@ The Tweet-IDs that help recover (hydrate) all datasets are organized as follows:
 
 Sentiment and Emotion Annotations are also available in a folder called ContainmentAnnot and the csv files have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
 
+### dff\_nrc\_41\_1.csv 
+
 | anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
 | ----: | -----------: | ------: | ---: | --: | ------: | -------: | ----: | -------: | -------: |
 |     0 |            0 |       0 |    0 |   0 |       0 |        0 |     0 |        0 |        0 |
 |     0 |            0 |       0 |    1 |   0 |       0 |        1 |     0 |        3 |        0 |
 |     1 |            1 |       0 |    2 |   1 |       1 |        1 |     4 |        2 |        2 |
 |     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
+
+### dff\_lds\_41\_1.csv 
+    
+| Neg\_lsdfr | Pos\_lsdfr | nb | id |
+| ---------: | ---------: | -: | -: |
+|          0 |          0 |  1 |  1 |
+|          0 |          0 | 20 |  2 |
+|          0 |          1 | 38 |  3 |
+|          1 |          1 | 26 |  4 |
+
+
+### dff\_emos\_41\_1.csv
+
+|     | emoji  | nemoji | min\_sentsc | mean\_sentsc | max\_sentsc |
+| --- | :----- | -----: | ----------: | -----------: | ----------: |
+| 193 | ;      |      0 |          NA |           NA |          NA |
+| 194 | 😂;😂;😂; |      3 |       0.221 |       0.2210 |       0.221 |
+| 195 | 📷;     |      1 |       0.430 |       0.4300 |       0.430 |
+| 196 | 😆;😅;🤣; |      3 |       0.178 |       0.2935 |       0.409 |
 
 ## Notes About the Data
 A few notes about this data: 
