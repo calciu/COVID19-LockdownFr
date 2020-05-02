@@ -11,9 +11,11 @@ Additionally we release annotations of this corpus using sentiment and emotions 
 The associated paper to this repository can be found here: [#COVID-19: The First Public COVID19 Containment Twitter Dataset](under development)
 
 ## Data Organization
-The Tweet-IDs are organized as follows:
+The Tweet-IDs that help recover (hydrate) all datasets are organized as follows:
 * Tweet-ID files are stored in two folders ContainmentDays and ContainmentOther. The first has tweets collected with the containment day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the containment period.
 * Individual Tweet-ID files contain a collection of Tweet IDs, and the file names all follow the same structure, with a prefix “df_ids” followed by either "jX" indicating the day (jour) for the first folder and by "confX" meaning containement (confinement) for the second.
+
+Sentiment and Emotion Annotations are also available in a folder called ContainmentAnnot and the csv files have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
 
 ## Notes About the Data
 A few notes about this data: 
