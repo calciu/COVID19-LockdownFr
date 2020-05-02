@@ -17,13 +17,12 @@ The Tweet-IDs that help recover (hydrate) all datasets are organized as follows:
 
 Sentiment and Emotion Annotations are also available in a folder called ContainmentAnnot and the csv files have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
 
-table border=1>
-<tr> <th>  </th> <th> anger </th> <th> anticipation </th> <th> disgust </th> <th> fear </th> <th> joy </th> <th> sadness </th> <th> surprise </th> <th> trust </th> <th> negative </th> <th> positive </th>  </tr>
-  <tr> <td align="right"> 1 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> </tr>
-  <tr> <td align="right"> 2 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   3 </td> <td align="right">   0 </td> </tr>
-  <tr> <td align="right"> 3 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   2 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   1 </td> <td align="right">   4 </td> <td align="right">   2 </td> <td align="right">   2 </td> </tr>
-  <tr> <td align="right"> 4 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   2 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   0 </td> <td align="right">   0 </td> <td align="right">   1 </td> <td align="right">   0 </td> </tr>
-   </table>
+| anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
+| ----: | -----------: | ------: | ---: | --: | ------: | -------: | ----: | -------: | -------: |
+|     0 |            0 |       0 |    0 |   0 |       0 |        0 |     0 |        0 |        0 |
+|     0 |            0 |       0 |    1 |   0 |       0 |        1 |     0 |        3 |        0 |
+|     1 |            1 |       0 |    2 |   1 |       1 |        1 |     4 |        2 |        2 |
+|     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
 
 ## Notes About the Data
 A few notes about this data: 
