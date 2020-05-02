@@ -18,6 +18,7 @@ The Tweet-IDs that help recover (hydrate) all datasets are organized as follows:
 Sentiment and Emotion Annotations are also available in a folder called ContainmentAnnot and the csv files have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
 
 ### dff\_nrc\_41\_1.csv 
+nrc files contain ten columns the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
 
 | anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
 | ----: | -----------: | ------: | ---: | --: | ------: | -------: | ----: | -------: | -------: |
@@ -27,6 +28,7 @@ Sentiment and Emotion Annotations are also available in a folder called Containm
 |     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
 
 ### dff\_lds\_41\_1.csv 
+lds files contain four columns negative and positive sentiment frequencie, number of words and identification number of the tweets
     
 | Neg\_lsdfr | Pos\_lsdfr | nb | id |
 | ---------: | ---------: | -: | -: |
@@ -37,6 +39,8 @@ Sentiment and Emotion Annotations are also available in a folder called Containm
 
 
 ### dff\_emos\_41\_1.csv
+emos files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
+
 
 |     | emoji  | nemoji | min\_sentsc | mean\_sentsc | max\_sentsc |
 | --- | :----- | -----: | ----------: | -----------: | ----------: |
