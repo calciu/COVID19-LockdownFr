@@ -85,8 +85,28 @@ This dataset is licensed under the Creative Commons Attribution-NonCommercial-Sh
 
 Sophie Balech, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
 
-# Statistics Summary (v0.1)
-Number of Tweets : ** to come**
+# Statistics Summary (v0.1 41 containment days up to April 27 2020)
+Number of Tweets : ** 2103625**
+
+| ISO | Language  | No. tweets | % total tweets |
+| -------: | ------:  | --------: |---------: |
+| fr | French  | 2064380 | 98.13 |
+| es | Spanish  | 2531 | 0.12 |
+| ca | Catalan  | 2253 | 0.11 |
+| pt | Portuguese  | 1508 | 0.07 |
+| ht | Haitian  | 783 | 0.04 |
+| it | Italian  | 781 | 0.04 |
+| ja | Japanese  | 539 | 0.03 |
+| tr | Turkish  | 440 | 0.02 |
+| de | German  | 437 | 0.02 |
+| no | Norvegian  | 273 | 0.01 |
+| eu | Basque  | 255 | 0.01 |
+| ar | Arabic  | 247 | 0.01 |
+| tl | Tagalog (Philipnes)  | 228 | 0.01 |
+| ro | Romanian  | 226 | 0.01 |
+| nl | Dutch  | 214 | 0.01 |
+| et | Estonian  | 196 | 0.01 |
+
 
 # Inquiries
 If you have technical questions about the data collection, please contact Mihai Calciu at **mihai.calciu[at]univ-lille[dot]fr**.
