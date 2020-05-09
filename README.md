@@ -105,7 +105,7 @@ Number of Tweets : ** 2103625**
 | no | Norvegian  | 273 | 0.01 |
 | eu | Basque  | 255 | 0.01 |
 | ar | Arabic  | 247 | 0.01 |
-| tl | Tagalog (Philipnes)  | 228 | 0.01 |
+| tl | Tagalog (Philipines)  | 228 | 0.01 |
 | ro | Romanian  | 226 | 0.01 |
 | nl | Dutch  | 214 | 0.01 |
 | et | Estonian  | 196 | 0.01 |
