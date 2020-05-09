@@ -11,13 +11,10 @@ Additionally we release annotations of this corpus using sentiment and emotions 
 The associated paper to this repository can be found here: [#COVID-19: The First Public COVID19 Containment Twitter Dataset](under development)
 
 ## Data Organization
-The Tweet-IDs that help recover (hydrate) all datasets are organized as follows:
-* Tweet-ID files are stored in two folders ContainmentDays and ContainmentOther. The first has tweets collected with the containment day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the containment period.
-* Individual Tweet-ID files contain a collection of Tweet IDs, and the file names all follow the same structure, with a prefix “df_ids” followed by either "jX" indicating the day (jour) for the first folder and by "confX" meaning containement (confinement) for the second.
+### Tweet Sentiment and Emotion Annotations Files
+Sentiment and Emotion Annotations files (in .csv format) are available in the ContainmentAnnot folder. Their names have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
 
-Sentiment and Emotion Annotations are also available in a folder called ContainmentAnnot and the csv files have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
-
-### dff\_nrc\_41\_1.csv 
+#### dff\_nrc\_41\_1.csv 
 nrc files contain ten columns the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
 
 | anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
@@ -27,7 +24,7 @@ nrc files contain ten columns the first eight represent emotions frequencies and
 |     1 |            1 |       0 |    2 |   1 |       1 |        1 |     4 |        2 |        2 |
 |     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
 
-### dff\_lds\_41\_1.csv 
+#### dff\_lds\_41\_1.csv 
 lds files contain four columns negative and positive sentiment frequencie, number of words and identification number of the tweets
     
 | Neg\_lsdfr | Pos\_lsdfr | nb | id |
@@ -38,7 +35,7 @@ lds files contain four columns negative and positive sentiment frequencie, numbe
 |          1 |          1 | 26 |  4 |
 
 
-### dff\_emos\_41\_1.csv
+#### dff\_emos\_41\_1.csv
 emos files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
 
 
@@ -48,6 +45,12 @@ emos files contain five columns. The first is a list of emojis separated by ";",
 | 194 | 😂;😂;😂; |      3 |       0.221 |       0.2210 |       0.221 |
 | 195 | 📷;     |      1 |       0.430 |       0.4300 |       0.430 |
 | 196 | 😆;😅;🤣; |      3 |       0.178 |       0.2935 |       0.409 |
+
+### Tweet IDs files
+
+The Tweet-IDs that help recover (hydrate) all collected datasets are organized as follows:
+* Tweet-ID files are stored in two folders ContainmentDays and ContainmentOther. The first has tweets collected with the containment day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the containment period.
+* The file names have the following pattern: a prefix “df_ids” followed by either "jX" indicating the day (jour) for the first folder and by "confX" meaning containement (confinement) for the second.
 
 ## Notes About the Data
 A few notes about this data: 
