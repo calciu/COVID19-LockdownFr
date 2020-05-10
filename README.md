@@ -1,18 +1,18 @@
-# ContainmentDay (#ConfinementJour) COVID-19-TweetIDs
+LockdownDay (#ConfinementJour) COVID-19-TweetIDs
 
-The repository contains an ongoing collection of tweets IDs associated with the Containment period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 18, 2020. 
+The repository contains an ongoing collection of tweets IDs associated with the lockdown period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 18, 2020. 
 
-We used the Twitter’s search API to gather on a daily basis Tweets defined by  hashtags #confinementJour1 to #confinementJour_n (that is ContainmentDay1 to n).
+We used the Twitter’s search API to gather on a daily basis Tweets defined by  hashtags #confinementJour1 to #confinementJour_n (that is LockdownDay1 to n).
 
 To comply with Twitter’s [Terms of Service](https://developer.twitter.com/en/developer-terms/agreement-and-policy), we are only publicly releasing the Tweet IDs of the collected Tweets. The data is released for non-commercial research use. 
 
 Additionally we release annotations of this corpus using sentiment and emotions mesurement instruments. This allows researchers to evaluate the capability of these tools to capture variations of émotions expressed by people on a daily basis.
 
-The associated paper to this repository can be found here: [#COVID-19: The First Public COVID19 Containment Twitter Dataset](under development)
+The associated paper to this repository can be found here: [#COVID-19: The First French COVID19 Lockdown Twitter Dataset](under development)
 
 ## Data Organization
 ### Tweet Sentiment and Emotion Annotations Files
-Sentiment and Emotion Annotations files (in .csv format) are available in the ContainmentAnnot folder. Their names have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
+Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
 
 #### dff\_nrc\_41\_1.csv 
 nrc files contain ten columns the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
@@ -49,8 +49,8 @@ emos files contain five columns. The first is a list of emojis separated by ";",
 ### Tweet IDs files
 
 The Tweet-IDs that help recover (hydrate) all collected datasets are organized as follows:
-* Tweet-ID files are stored in two folders ContainmentDays and ContainmentOther. The first has tweets collected with the containment day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the containment period.
-* The file names have the following pattern: a prefix “df_ids” followed by either "jX" indicating the day (jour) for the first folder and by "confX" meaning containement (confinement) for the second.
+* Tweet-ID files are stored in two folders LockdownDays and LockdownOther. The first has tweets collected with the lockdown day hashtag #ConfinementJourX, the second one contains tweets collected using a larger set of hashtags indicating the lockdown period.
+* The file names have the following pattern: a prefix “df_ids” followed by either "jX" indicating the day (jour) for the first folder and by "confX" meaning lockdown (confinement) for the second.
 
 ## Notes About the Data
 A few notes about this data: 
@@ -88,7 +88,7 @@ This dataset is licensed under the Creative Commons Attribution-NonCommercial-Sh
 
 Sophie Balech, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
 
-# Statistics Summary (v0.1 41 containment days up to April 27 2020)
+# Statistics Summary (v0.1 41 Lockdown days up to April 27 2020)
 Number of Tweets : ** 2103625**
 
 | ISO | Language  | No. tweets | % total tweets |
