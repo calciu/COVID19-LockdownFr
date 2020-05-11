@@ -88,31 +88,32 @@ This dataset is licensed under the Creative Commons Attribution-NonCommercial-Sh
 
 Sophie Balech, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
 
-# Statistics Summary (v0.2 52 Lockdown days up to May 10 2020)
-Number of Tweets : ** 2528322 **
+# Statistics Summary (v0.2 55 Lockdown days up to May 11 2020)
+Number of Tweets : ** 2598250 **
 
 | ISO | Language  | No. tweets | % total tweets |
 | -------: | ------:  | --------: |---------: |
-| fr | French  | 2407044 | 95.2 |
-| en | English  | 30734 | 1.22 |
-| es | Spanish  | 2914 | 0.12 |
-| ca | Catalan  | 2328 | 0.09 |
-| pt | Portuguese  | 1781 | 0.07 |
-| it | Italian  | 1130 | 0.04 |
-| ht | Haitian  | 930 | 0.04 |
-| ja | Japanese  | 672 | 0.03 |
-| tr | Turkish  | 658 | 0.03 |
-| in | Indonesian  | 576 | 0.02 |
-| de | German  | 487 | 0.02 |
-| no | Norvegian  | 341 | 0.01 |
-| eu | Basque  | 261 | 0.01 |
-| tl | Tagalog (Philipnes)  | 258 | 0.01 |
-| ar | Arabic  | 257 | 0.01 |
-| ro | Romanian  | 252 | 0.01 |
-| et | Estonian  | 240 | 0.01 |
-| nl | Dutch  | 237 | 0.01 |
-| da | Swedish  | 184 | 0.01 |
-| sv | Danish  | 182 | 0.01 |
+| fr | French  | 2474086 | 95.22 |
+| en | English  | 31614 | 1.22 |
+| es | Spanish  | 2997 | 0.12 |
+| ca | Catalan  | 2412 | 0.09 |
+| pt | Portuguese  | 1817 | 0.07 |
+| it | Italian  | 1153 | 0.04 |
+| ht | Haitian  | 953 | 0.04 |
+| ja | Japanese  | 731 | 0.03 |
+| tr | Turkish  | 672 | 0.03 |
+| in | Indonesian  | 588 | 0.02 |
+| de | German  | 505 | 0.02 |
+| no | Norvegian  | 345 | 0.01 |
+| tl | Tagalog (Philipnes)  | 280 | 0.01 |
+| ar | Arabic  | 264 | 0.01 |
+| eu | Basque  | 263 | 0.01 |
+| ro | Romanian  | 254 | 0.01 |
+| nl | Dutch  | 249 | 0.01 |
+| et | Estonian  | 245 | 0.01 |
+| da | Danish  | 192 | 0.01 |
+| sv | Swedish  | 185 | 0.01 |
+
 
 
 # Inquiries
