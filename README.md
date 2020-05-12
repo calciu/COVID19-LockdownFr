@@ -1,10 +1,4 @@
----
-title: "LockdownDay (#ConfinementJour) COVID-19-TweetIDs"
-author: "M. Calciu"
-date: "5/11/2020"
-output: html_document
----
-
+# LockdownDay (#ConfinementJour) COVID-19-TweetIDs
 
 For the associated research paper see https://arxiv.org/abs/2005.05075 
 
