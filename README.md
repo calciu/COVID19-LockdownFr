@@ -1,6 +1,15 @@
-LockdownDay (#ConfinementJour) COVID-19-TweetIDs
+---
+title: "LockdownDay (#ConfinementJour) COVID-19-TweetIDs"
+author: "M. Calciu"
+date: "5/11/2020"
+output: html_document
+---
 
-The repository contains an ongoing collection of tweets IDs associated with the lockdown period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 18, 2020. 
+
+For the associated research paper see https://arxiv.org/abs/2005.05075 
+
+
+The repository contains an ongoing collection of tweets IDs associated with the lockdown period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 17, 2020. 
 
 We used the Twitter’s search API to gather on a daily basis Tweets defined by  hashtags #confinementJour1 to #confinementJour_n (that is LockdownDay1 to n).
 
@@ -39,12 +48,12 @@ lds files contain four columns negative and positive sentiment frequencie, numbe
 emos files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
 
 
-|     | emoji  | nemoji | min\_sentsc | mean\_sentsc | max\_sentsc |
-| --- | :----- | -----: | ----------: | -----------: | ----------: |
-| 193 | ;      |      0 |          NA |           NA |          NA |
-| 194 | 😂;😂;😂; |      3 |       0.221 |       0.2210 |       0.221 |
-| 195 | 📷;     |      1 |       0.430 |       0.4300 |       0.430 |
-| 196 | 😆;😅;🤣; |      3 |       0.178 |       0.2935 |       0.409 |
+| emoji  | nemoji | min\_sentsc | mean\_sentsc | max\_sentsc |
+| :----- | -----: | ----------: | -----------: | ----------: |
+| ;      |      0 |          NA |           NA |          NA |
+| 😂;😂;😂; |      3 |       0.221 |       0.2210 |       0.221 |
+| 📷;     |      1 |       0.430 |       0.4300 |       0.430 |
+| 😆;😅;🤣; |      3 |       0.178 |       0.2935 |       0.409 |
 
 ### Tweet IDs files
 
