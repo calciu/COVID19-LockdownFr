@@ -1,6 +1,6 @@
 # LockdownDay (#ConfinementJour) COVID-19-TweetIDs
 
-For the associated research paper see https://arxiv.org/abs/2005.05075 
+For the associated research paper see https://arxiv.org/ftp/arxiv/papers/2005/2005.05075.pdf
 
 
 This repository contains an ongoing collection of tweets IDs associated with the lockdown period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 17, 2020. 
