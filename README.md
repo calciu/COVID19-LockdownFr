@@ -3,7 +3,7 @@
 For the associated research paper see https://arxiv.org/abs/2005.05075 
 
 
-The repository contains an ongoing collection of tweets IDs associated with the lockdown period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 17, 2020. 
+This repository contains an ongoing collection of tweets IDs associated with the lockdown period due to the coronavirus COVID-19 (SARS-CoV-2), that started in France on March 17, 2020. 
 
 We used the Twitter’s search API to gather on a daily basis Tweets defined by  hashtags #confinementJour1 to #confinementJour_n (that is LockdownDay1 to n).
 
