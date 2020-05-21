@@ -15,7 +15,8 @@ The associated paper to this repository can be found here: [#COVID-19: The First
 
 ## Data Organization
 ### Tweet Sentiment and Emotion Annotations Files
-Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_nublerOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds)
+Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds). In order to facilitate comparisons we added the French language tweets of a bigger dataset (available at https://github.com/echen102/COVID-19-TweetIDs) of which we have hydrated the months 1 to 4. Therefor their names end with *1-4fr.csv 
+
 
 #### dff\_nrc\_55\_1.csv 
 nrc files contain ten columns the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
