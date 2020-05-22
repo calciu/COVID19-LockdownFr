@@ -87,12 +87,12 @@ Run the script. The hydrated Tweets will be stored in the same folder as the Twe
 python3 hydrate.py
 ```
 
-# Data Usage Agreement
+## Data Usage Agreement
 This dataset is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)). By using this dataset, you agree to abide by the stipulations in the license, remain in compliance with Twitter’s [Terms of Service](https://developer.twitter.com/en/developer-terms/agreement-and-policy), and cite the following manuscript: 
 
 Sophie Balech, Christophe Benavent, and Mihai Calciu (2020), The First French COVID19 Lockdown Twitter Dataset, arXiv:2005.05075 [cs.SI]
 
-# Statistics Summary (v0.2 55 Lockdown days up to May 11 2020)
+## Statistics Summary (v0.2 55 Lockdown days up to May 11 2020)
 Number of Tweets : ** 2598250 **
 
 | ISO | Language  | No. tweets | % total tweets |
