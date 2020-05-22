@@ -15,11 +15,11 @@ The associated paper to this repository can be found here: [#COVID-19: The First
 
 ## Data Organization
 ### Tweet Sentiment and Emotion Annotations Files
-Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc or lds). In order to facilitate comparisons we added the French language tweets of a bigger dataset (available at https://github.com/echen102/COVID-19-TweetIDs) of which we have hydrated the months 1 to 4. Therefor their names end with *1-4fr.csv 
+Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc,lsd or emoji). In order to facilitate comparisons we added the French language tweets of a bigger dataset (available at https://github.com/echen102/COVID-19-TweetIDs) of which we have hydrated the months 1 to 4 (1,9 milions tweets). Therefore their names end with *1-4fr.csv 
 
 
 #### dff\_nrc\_55\_1.csv , dff\_nrc1-4fr.csv
-nrc files contain ten columns the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
+Nrc files contain ten columns: the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
 
 | anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
 | ----: | -----------: | ------: | ---: | --: | ------: | -------: | ----: | -------: | -------: |
@@ -29,7 +29,7 @@ nrc files contain ten columns the first eight represent emotions frequencies and
 |     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
 
 #### dff\_lsd\_55\_1.csv , dff\_lsd1-4fr.csv
-lds files contain four columns negative and positive sentiment frequencie, number of words and identification number of the tweets
+Lsd files contain four columns negative and positive sentiment frequency, number of words and identification number of the tweets
     
 | Neg\_lsdfr | Pos\_lsdfr | nb | id |
 | ---------: | ---------: | -: | -: |
@@ -40,7 +40,7 @@ lds files contain four columns negative and positive sentiment frequencie, numbe
 
 
 #### dff\_emos\_55\_1.csv, dff\_emoji1-4fr.csv
-emos files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
+Emoji files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
 
 
 | emoji  | nemoji | min\_sentsc | mean\_sentsc | max\_sentsc |
@@ -90,7 +90,7 @@ python3 hydrate.py
 # Data Usage Agreement
 This dataset is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License ([CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)). By using this dataset, you agree to abide by the stipulations in the license, remain in compliance with Twitter’s [Terms of Service](https://developer.twitter.com/en/developer-terms/agreement-and-policy), and cite the following manuscript: 
 
-Sophie Balech, Christophe Benavent, and Mihai Calciu. 2020. #COVID-19: The First Public COVID19 Containment Twitter Dataset.  arXiv:(under development)
+Sophie Balech, Christophe Benavent, and Mihai Calciu (2020), The First French COVID19 Lockdown Twitter Dataset, arXiv:2005.05075 [cs.SI]
 
 # Statistics Summary (v0.2 55 Lockdown days up to May 11 2020)
 Number of Tweets : ** 2598250 **
