@@ -11,7 +11,7 @@ To comply with Twitter’s [Terms of Service](https://developer.twitter.com/en/d
 
 Additionally we release annotations of this corpus using sentiment and emotions mesurement instruments. This allows researchers to evaluate the capability of these tools to capture variations of émotions expressed by people on a daily basis.
 
-The associated paper to this repository can be found here: [#COVID-19: The First French COVID19 Lockdown Twitter Dataset](under development)
+The associated paper to this repository can be found here: [#COVID-19: The First French COVID19 Lockdown Twitter Dataset](https://arxiv.org/abs/2005.05075)
 
 ## Data Organization
 ### Tweet Sentiment and Emotion Annotations Files
