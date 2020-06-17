@@ -15,10 +15,10 @@ The associated paper to this repository can be found here: [The First French COV
 
 ## Data Organization
 ### Tweet Sentiment and Emotion Annotations Files
-Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc,lsd or emoji). In order to facilitate comparisons we added the French language tweets of a bigger dataset (available at https://github.com/echen102/COVID-19-TweetIDs) of which we have hydrated the months 1 to 4 (1,9 milions tweets). Therefore their names end with *1-4fr.csv 
+Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc,lsd or emoji). In order to facilitate comparisons we added the French language tweets of a bigger dataset (available at https://github.com/echen102/COVID-19-TweetIDs) of which we have hydrated the months 1 to 4 (1,9 milions tweets). Therefore their names end with *1-5fr.csv 
 
 
-#### dff\_nrc\_55\_1.csv , dff\_nrc1-4fr.csv
+#### dff\_nrc\_55\_1.csv , dff\_nrc1-5fr.csv
 Nrc files contain ten columns: the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
 
 | anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
@@ -28,7 +28,7 @@ Nrc files contain ten columns: the first eight represent emotions frequencies an
 |     1 |            1 |       0 |    2 |   1 |       1 |        1 |     4 |        2 |        2 |
 |     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
 
-#### dff\_lsd\_55\_1.csv , dff\_lsd1-4fr.csv
+#### dff\_lsd\_55\_1.csv , dff\_lsd1-5fr.csv
 Lsd files contain four columns negative and positive sentiment frequency, number of words and identification number of the tweets
     
 | Neg\_lsdfr | Pos\_lsdfr | nb | id |
@@ -39,7 +39,7 @@ Lsd files contain four columns negative and positive sentiment frequency, number
 |          1 |          1 | 26 |  4 |
 
 
-#### dff\_emos\_55\_1.csv, dff\_emoji1-4fr.csv
+#### dff\_emos\_55\_1.csv, dff\_emoji1-5fr.csv
 Emoji files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
 
 
