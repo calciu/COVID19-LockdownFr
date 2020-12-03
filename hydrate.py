@@ -17,7 +17,7 @@ from twarc import Twarc
 from pathlib import Path
 
 twarc = Twarc()
-data_dirs = ['LockdownDays', 'LockdownOther']
+data_dirs = ['LockdownDays','LockdownOther']
 
 
 def main():
