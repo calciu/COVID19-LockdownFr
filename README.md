@@ -15,10 +15,10 @@ The associated paper to this repository can be found here: [The First French COV
 
 ## Data Organization
 ### Tweet Sentiment and Emotion Annotations Files
-Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc,lsd or emoji). In order to facilitate comparisons we added the French language tweets of a bigger dataset (available at https://github.com/echen102/COVID-19-TweetIDs) of which we have hydrated the months 1 to 5 (2.25 million tweets). Therefore their names end with *1-5fr.csv 
+Sentiment and Emotion Annotations files (in .csv format) are available in the LockdownAnnot folder. Their names have the following pattern dff_method_numberOfDays_chunk.csv (dff meaning data frame free and the method is nrc,lsd or emoji). 
 
 
-#### dff\_nrc\_55\_1.csv , dff\_nrc1-5fr.csv
+#### dff\_nrc\_55\_1.csv
 Nrc files contain ten columns: the first eight represent emotions frequencies and the last two sentiments frequencies per tweet
 
 | anger | anticipation | disgust | fear | joy | sadness | surprise | trust | negative | positive |
@@ -28,7 +28,7 @@ Nrc files contain ten columns: the first eight represent emotions frequencies an
 |     1 |            1 |       0 |    2 |   1 |       1 |        1 |     4 |        2 |        2 |
 |     0 |            1 |       0 |    2 |   0 |       1 |        0 |     0 |        1 |        0 |
 
-#### dff\_lsd\_55\_1.csv , dff\_lsd1-5fr.csv
+#### dff\_lsd\_55\_1.csv
 Lsd files contain four columns negative and positive sentiment frequency, number of words and identification number of the tweets
     
 | Neg\_lsdfr | Pos\_lsdfr | nb | id |
@@ -39,7 +39,7 @@ Lsd files contain four columns negative and positive sentiment frequency, number
 |          1 |          1 | 26 |  4 |
 
 
-#### dff\_emos\_55\_1.csv, dff\_emoji1-5fr.csv
+#### dff\_emos\_55\_1.csv
 Emoji files contain five columns. The first is a list of emojis separated by ";", the second indicates the number of emojis per tweet. The other three indicate the minimum, average and maximum sentiment score (on a scale from -1 to 1) 
 
 
@@ -58,8 +58,7 @@ The Tweet-IDs that help recover (hydrate) all collected datasets are organized a
 
 ## Notes About the Data
 A few notes about this data: 
-* We will be continuously maintaining this database for the foreseeable future, and will be uploading new data on a weekly basis.  
-* We will keep a running summary of basic statistics as we upload data in each new release. 
+* We have been maintaining this database during the 55 Lockdown day mentioned above.  
 * Consider using tools such as the [Hydrator](https://github.com/DocNow/hydrator) and [Twarc](https://github.com/DocNow/twarc) to rehydrate the Tweet IDs. Instructions for both are in the next section. 
 * Hydrating may take a while, and Tweets may have been deleted since our initial collection. If that is the case, unfortunately you will not be able to get the deleted Tweets from querying Twitter's API.
 
