@@ -1,0 +1,493 @@
+---
+title: "Sentiment Tweets"
+output: flexdashboard::flex_dashboard
+---
+```{bash}
+cat ../LockdownAnnot/dff_nrc_55* > dff_nrc.csv
+```
+
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(plotly)
+library(tidyverse) #l'environnement de base : données et visus
+library(rtweet) #extraction twitter
+library(gridExtra) #associer des ggplot
+library(ggrepel) #pour une belle labelisation des xy
+library(igraph) #pour l'analyse de réseau
+library(wesanderson)
+library(scales) #pour les échelles de temps et de date
+library(syuzhet)     # ncr      
+library(tm)
+library(quanteda) #with quanteda
+#palette de couleur
+#sentiment
+senticol <-c("firebrick","royalblue3", "darkgreen")
+#émotions
+emocol<-c("red3","orangered1","olivedrab3", "chartreuse","royalblue3","green4","yellow","purple3") #en respectant des codes mais il faudra adoucir.
+df_dates <- readRDS("../LockdownAnnot/df_55twdate.rds")
+dff_nrc = read.csv("dff_nrc.csv", header = TRUE, sep=",")
+dff_nrc = cbind(df_dates,dff_nrc)
+df_nrc <- sample_n(dff_nrc, 10000)
+```
+
+
+L’ évolution quantitative des tweets
+=====================================  
+
+```{r}
+## plot time series of tweets
+t <- ts_plot(df_nrc, "1 hours", color="darkblue") +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(plot.title = ggplot2::element_text(face = "bold")) +
+  ggplot2::labs(
+    x = NULL, y = NULL,
+    title = "Fréquence des posts twitters sur #confinementjour",
+    subtitle = "Nombre de tweets par heure",
+    caption = "\nSource: Data collected by Benavent C. from Twitter's REST API via rtweet"
+  )+ scale_x_datetime(date_breaks = "1 day", labels = scales::label_date_short())
+ggplotly(t)
+```
+
+On retrace ici la production quotidiennes des tweets, rt quotes et reply. On notera qu'en journée l'échantillon représente plusieurs milliers d'observations à l'heure ce qui assure une grande sensibilité des mesures.
+
+
+
+
+Analyse des résultats du NRC {.storyboard}
+=====================================     
+```{r, include=TRUE}
+#statistiques : moyenne et ecartype
+s_mean1<-round(mean(df_nrc$negative),2)
+s_mean2<-round(mean(df_nrc$positive),2)
+s_std1<-round(sd(df_nrc$negative),2)
+s_std2<-round(sd(df_nrc$positive),2)
+```
+
+### Fréquence des tweets
+
+```{r}
+## plot time series of tweets
+t <- ts_plot(df_nrc, "1 hours", color="darkblue") +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(plot.title = ggplot2::element_text(face = "bold")) +
+  ggplot2::labs(
+    x = NULL, y = NULL,
+    title = "Fréquence des posts twitters sur #confinementjour",
+    subtitle = "Nombre de tweets par heure",
+    caption = "\nSource: Data collected by Benavent C. from Twitter's REST API via rtweet"
+  )+ scale_x_datetime(date_breaks = "1 day", labels = scales::label_date_short())
+ggplotly(t)
+```
+
+*** 
+
+On retrace ici la production quotidiennes des tweets, rt quotes et reply. On notera qu'en journée l'échantillon représente plusieurs milliers d'observations à l'heure ce qui assure une grande sensibilité des mesures.
+
+### La distribution des sentiments positifs et négatifs
+
+```{r Senti02, include=TRUE}
+#statistiques : moyenne et ecartype
+s_mean1<-round(mean(df_nrc$negative),2)
+s_mean2<-round(mean(df_nrc$positive),2)
+s_std1<-round(sd(df_nrc$negative),2)
+s_std2<-round(sd(df_nrc$positive),2)
+#histogram
+g1<-ggplot(df_nrc, aes(x=negative))+
+  geom_histogram(binwidth=1,fill="red")+
+  theme_minimal()+ scale_x_reverse()+
+  ggplot2::annotate("text", x=7, y=200000, label= paste0("moyenne=",s_mean1," \n ecart type",s_std1))
+g2<-ggplot(df_nrc, aes(x=positive))+
+  geom_histogram(binwidth=1,fill="darkgreen")+
+  theme_minimal()+xlim(-1,15)+
+  ggplot2::annotate("text", x=7, y=200000, label= paste0("moyenne=",s_mean2," \n ecart type",s_std2))
+#g <- grid.arrange(g1,g2,ncol=2)
+ply1 <- ggplotly(g1)
+ply2 <- ggplotly(g2)
+subplot(ply1, ply2, nrows=1)
+```
+
+*** 
+
+Examinons d'abord la distribution des émotions négatives et positives. On examine dans la foulée leur distribution conjointe.
+
+### La distribution conjointe des sentiments
+
+```{r Senti03}
+g3 <- ggplot(df_nrc,aes(x=positive, y=negative))+geom_point(position="jitter")+theme_minimal()+geom_smooth(method="gam")
+ggplotly(g3)
+```
+
+***
+
+On examine dans la foulée leur distribution conjointe.
+
+https://a-little-book-of-r-for-time-series.readthedocs.io/en/latest/src/timeseries.html
+
+par convention le zero est partagé entre les positive et les negatifs
+
+
+
+L’évolution au cours du temps (NCR) {.storyboard}
+=====================================  
+
+```{r}
+df_nrc$month<-as.numeric(format(df_nrc$created_at, "%m")) # mois
+df_nrc$day<-as.numeric(format(df_nrc$created_at, "%d")) # jour
+df_nrc$hour<-as.numeric(format(df_nrc$created_at, "%H")) # heure
+sentevol<-df_nrc %>% group_by(month,day,hour) %>% mutate(n=1) %>%summarise(positive=mean(positive, na.rm=TRUE),negative=mean(negative, na.rm=TRUE), n=sum(n))
+sentevol$date<-paste0("2020","-",sentevol$month,"-",sentevol$day," ",sentevol$hour,":00:00")
+sentevol$date2 <- as.POSIXct(strptime(sentevol$date, "%Y-%m-%d %H:%M:%S"))
+foo<-sentevol %>% ungroup %>%select(date2, negative,positive) %>% mutate(negative=-1*negative, sentiment=positive+negative)
+
+```
+
+### Evolution de la valence du sentiment du confinement
+
+
+```{r}
+library(reshape2)
+foo<-melt(foo, id=c("date2"))
+g4 <- ggplot(foo, aes(x=date2,y=value,group=variable))+
+  geom_line(size=1,aes(color=variable))+
+  theme(axis.text.x=element_text(angle = 60, vjust = 0.5))+ 
+  theme_minimal()+ stat_smooth(  aes(color =variable, fill = variable),  method = "loess")+
+  labs(x = NULL, y = NULL,
+    title = "Evolution de la valence du sentiment du confinement", y="Valence (+/-)",x="dates (par heures)",
+    subtitle = "Valence par heure",
+    caption = "\nSource: Data collected by Benavent C. from Twitter's REST API via rtweet"
+  )+  scale_x_datetime(date_breaks = "1 day", labels = scales::label_date_short())
+
+ggplotly(g4)
+```
+
+***
+
+On represente ici l’évolution des scores de positivité et de négativité, ainsi que leur différence qui donne le sentiment moyen si on pense que les points négatifs éffacent les points positifs. On garde en tête l’idée de ce carré magique que le négatif n’est pas que l’antonyme du positif.
+
+### Tweets par jour 
+```{r}
+df_nrc<- df_nrc %>% mutate(Jour=ifelse(month == 3,day-16 ,ifelse(month==4,day+15,0) ))
+g5 <- ggplot(df_nrc,aes(x=Jour))+
+  geom_bar(fill="gold4")+ 
+  theme_minimal()+ 
+  labs(title="# de tweets par jour") #+
+  #facet_wrap(vars(is_retweet),ncol=1,scales="free")
+
+ggplotly(g5)
+```
+
+***
+
+### Evolution de la valence du sentiment du confinement (2)
+
+```{r}
+sentevol<-df_nrc %>% group_by(Jour) %>% mutate(n=1) %>%summarise(positive=mean(positive, na.rm=TRUE),negative=mean(negative, na.rm=TRUE), n=sum(n))
+foo<-sentevol %>% ungroup %>%select(Jour, negative,positive) %>% mutate(negative=-1*negative, sentiment=positive+negative)
+library(reshape2)
+foo<-melt(foo, id=c("Jour")) %>%filter(Jour<23)
+g6 <- ggplot(foo, aes(x=Jour,y=value,group=variable))+
+  geom_line(size=1,aes(color=variable))+
+  theme(axis.text.x=element_text(angle = 60, vjust = 0.5))+ 
+  theme_minimal()+ stat_smooth(  aes(color =variable, fill = variable),  method = "loess")+
+  labs(x = NULL, y = NULL,
+    title = "Evolution de la valence du sentiment du confinement", y="Valence (+/-)",x="dates (par heures)",
+    subtitle = "Valence par heure",
+    caption = "\nSource: Data collected by Benavent C. from Twitter's REST API via rtweet"
+  )
+
+ggplotly(g6)
+```
+
+***
+
+un peu d’analyse des auto-corrélations et des corrélations croisées ou comment analyser les relations de la peine et du bonheur. IL nous faut deux grilles théoriques.
+
+    grille 1 : plus on est heureux moins on est négatif : une logique de balance ou de compensation qui se justifie par une logique d’effort, pour un niveau d’éffort donné on reparti sont expression entre l’affirmation de l’espoir et la distillation de rancoeur.
+    grille 2 : plus on est heureux plus on est négatif (moins on est heureux et moins on se plaint) : une logique d’expression ou de verbalisation qui oppose le silence à la protestation pour reprendre les catégories de Hisrchman. Ce qui prosteste ne sont pas forcement ceux qui souffre le plus.
+
+
+L’analyse des émotions (NCR) {.storyboard}
+=====================================  
+```{r}
+emoevol<-df_nrc %>% group_by(month,day,hour) %>% mutate(n=1) %>% 
+  summarise(anger=mean(anger,na.rm=TRUE), 
+            anticipation=mean(anticipation, na.rm=TRUE),
+            disgust=mean(disgust, na.rm=TRUE),
+            fear=mean(fear, na.rm=TRUE),
+            joy=mean(joy, na.rm=TRUE),
+            sadness=mean(sadness, na.rm=TRUE),
+            surprise=mean(surprise, na.rm=TRUE),
+            trust=mean(trust, na.rm=TRUE),
+            n=sum(n))
+emoevol$date<-paste0("2020","-",emoevol$month,"-",emoevol$day," ",emoevol$hour,":00:00")
+emoevol$date2 <- as.POSIXct(strptime(emoevol$date, "%Y-%m-%d %H:%M:%S"))
+foo<-emoevol %>% ungroup %>%select(date2, anger,fear,disgust, sadness ,surprise,anticipation,trust, joy )
+emocol<-c("red3","orangered1","purple3","royalblue3","chartreuse","olivedrab3","green4","yellow") #en respectant des codes mais il faudra adoucir.
+```
+
+
+### Les émotions des tweets #ConfinementJour"
+
+```{r}
+#la distribution des émotions
+  
+foo<-melt(foo, id=c("date2"))
+#foo$variable2<-factor(foo$variable, ordered = TRUE,levels = c("joy","trust","anticipation","surprise","sadness","disgust","fear","anger"))
+g7 <- ggplot(foo, aes(x=date2,y=value,group=variable))+
+  geom_line(size=1,aes(color=variable),show.legend = FALSE)+
+  theme(axis.text.x=element_text(angle = 90, vjust = 0.5))+ 
+  theme_minimal()+ stat_smooth(method = "gam", aes(color=variable)  )+
+  labs(title="Les émotions des tweets #ConfinementJour", y="Intensité moyenne (par heure)",x=NULL,caption= "Définitions Plutchik (82) - operationalisation via NRC - lissage GAM:
+ - la confiance va de l'acceptation à l'admiration
+ - la peur passe de la timidité à la terreur
+ - la surprise va de l'incertitude à l'étonnement
+ - la tristesse passe de la morosité au chagrin
+ - le dégoût va de l'aversion à la répugnance
+ - la colère passe de l'agacement à la fureur
+ - l'anticipation va de l'intérêt à la vigilance
+ - La joie passe de la sérénité à l'extase
+ \n \nSource: Data collected by Benavent C. from Twitter's REST API via rtweet")+
+  facet_wrap(vars(variable),ncol=4)+
+  scale_color_manual(values=emocol)+  scale_x_datetime(date_breaks = "1 day", labels = scales::label_date_short())
+##################
+
+ggplotly(g7)
+
+```
+
+***
+
+### Les émotions des tweets #ConfinementJour (2)
+
+```{r}
+emoevol<-df_nrc %>% group_by(Jour) %>% mutate(n=1) %>% 
+  summarise(anger=mean(anger,na.rm=TRUE), 
+            anticipation=mean(anticipation, na.rm=TRUE),
+            disgust=mean(disgust, na.rm=TRUE),
+            fear=mean(fear, na.rm=TRUE),
+            joy=mean(joy, na.rm=TRUE),
+            sadness=mean(sadness, na.rm=TRUE),
+            surprise=mean(surprise, na.rm=TRUE),
+            trust=mean(trust, na.rm=TRUE),
+            n=sum(n))
+foo<-emoevol %>% ungroup %>%select(Jour, anger,fear,disgust, sadness ,surprise,anticipation,trust, joy )
+foo<-melt(foo, id=c("Jour")) %>% filter(Jour<23)
+g8 <- ggplot(foo, aes(x=Jour,y=value,group=variable))+
+  geom_line(size=1,aes(color=variable),show.legend = FALSE)+
+  theme(axis.text.x=element_text(angle = 90, vjust = 0.5))+ 
+  theme_minimal()+ stat_smooth(method = "loess",size=2, aes(color=variable)  )+
+  labs(title="Les émotions des tweets #ConfinementJour", y="Intensité moyenne (par heure)",x=NULL,caption= "Définitions Plutchik (82) - operationalisation via NRC - lissage GAM:
+ - la confiance va de l'acceptation à l'admiration
+ - la peur passe de la timidité à la terreur
+ - la surprise va de l'incertitude à l'étonnement
+ - la tristesse passe de la morosité au chagrin
+ - le dégoût va de l'aversion à la répugnance
+ - la colère passe de l'agacement à la fureur
+ - l anticipation va de l'intérêt à la vigilance
+ - La joie passe de la sérénité à l'extase \n \nSource: Data collected by Benavent C. from Twitter's REST API via rtweet")+  scale_color_manual(values=emocol)
+
+ggplotly(g8)
+```
+
+***
+
+On se concentre sur les 8 facettes de l’émotion telle que conceptualisée par Plutchik (@plutchik_psychoevolutionary_1982), on reprend les définitions en anglais :
+
+    "trust goes from acceptance to admiration
+    fear goes from timidity to terror
+    surprise goes from uncertainty to amazement
+    sadness goes from gloominess to grief
+    disgust goes from dislike to loathing
+    anger goes from annoyance to fury
+    anticipation goes from interest to vigilance
+    joy goes from serenity to ecstasy"
+
+et en francais
+
+    "la confiance va de l’acceptation à l’admiration
+    la peur va de la timidité à la terreur
+    la surprise va de l’incertitude à l’étonnement
+    la tristesse va de la morosité au chagrin
+    le dégoût va de l’aversion à la répugnance
+    la colère va de l’agacement à la fureur
+    l’anticipation va de l’intérêt à la vigilance
+    La joie va de la sérénité à l’extase".
+
+### Les émotions des tweets #ConfinementJour (3)
+
+```{r}
+emocol<-c("red3","orangered1","purple3","royalblue3","chartreuse","olivedrab3","green4","gold") #ern respectant des codes mais il faudra adoucir.
+g9 <- ggplot(foo, aes(x=Jour,y=value,group=variable))+
+  geom_area(stat="identity",size=5,aes(fill=variable),show.legend = TRUE, position="stack")+
+  theme(axis.text.x=element_text(angle = 90, vjust = 0.5))+ 
+  theme_minimal()+
+  labs(title="Les émotions des tweets #ConfinementJour", y="Intensité moyenne (par heure)",x=NULL,caption= "Définitions Plutchik (82) - operationalisation via NRC - lissage GAM:
+ - la confiance va de l'acceptation à l'admiration
+ - la peur passe de la timidité à la terreur
+ - la surprise va de l'incertitude à l'étonnement
+ - la tristesse passe de la morosité au chagrin
+ - le dégoût va de l'aversion à la répugnance
+ - la colère passe de l'agacement à la fureur
+ - l'anticipation va de l'intérêt à la vigilance
+ - La joie passe de la sérénité à l'extase
+ \n \nSource: Data collected by Benavent C. from Twitter's REST API via rtweet")+
+  scale_fill_manual(values=emocol)
+
+ggplotly(g9)
+```
+
+***
+
+et sous une autre forme.
+
+### Spectre des émotions #ConfinementJour
+
+```{r}
+emocol<-c("red3","orangered1","purple3","royalblue3","chartreuse","olivedrab3","green4","gold") #en respectant des codes mais il faudra adoucir.
+foo<-emoevol %>% ungroup %>%select(Jour, anger,fear,disgust, sadness ,surprise,anticipation,trust, joy ) %>% filter(Jour<23)
+emo<-subset(foo,select=-c(Jour))
+emo$tot<-rowSums(emo, na.rm = FALSE, dims = 1)
+emo$tot[is.na(emo$tot)]<-0.000001
+emo$p_anger<-emo$anger/emo$tot
+emo$p_anticipation<-emo$anticipation/emo$tot
+emo$p_disgust<-emo$disgust/emo$tot
+emo$p_fear<-emo$fear/emo$tot
+emo$p_joy<-emo$joy/emo$tot
+emo$p_sadness<-emo$sadness/emo$tot
+emo$p_surprise<-emo$surprise/emo$tot
+emo$p_trust<-emo$trust/emo$tot
+foo2<-emo %>%
+  select(p_anger,p_anticipation,p_disgust, p_fear,p_joy, p_sadness ,p_surprise,p_trust)
+date<-foo %>%select(Jour)
+foo2<-cbind(date,foo2)
+foo2<-melt(foo2, id=c("Jour"))
+g10 <- ggplot(foo2, aes(x=Jour,y=value,group=variable))+
+  geom_area(stat="identity",size=5,aes(fill=variable),show.legend = TRUE, position="fill")+
+  theme_minimal()+theme(axis.text.x = element_text(size=11, angle=45))+
+  labs(title="Spectre des émotions #confinementjour", y="Proportion",x=NULL)+  
+  scale_fill_manual(values=emocol)+
+  scale_color_manual(values=emocol)
+
+ggplotly(g10)
+```
+
+***
+
+### Intensité des émotions #ConfinementJour
+
+```{r}
+foo3<-emo %>%  select(tot)
+date<-foo %>%select(Jour)
+foo3<-cbind(date,foo3)
+g11 <- ggplot(foo3, aes(x=Jour,y=tot))+
+  geom_line(stat="identity",size=1,show.legend = TRUE,color="gold2")+
+  theme_minimal()+theme(axis.text.x = element_text(size=11, angle=45))+
+  labs(title="Intensité des émotions #confinementjour", subtitle="par heure", y="Somme des émotions",x=NULL)+  geom_smooth(method="loess", color="orange3")
+
+ggplotly(g11)
+```
+
+***
+
+Une représentation moins brute peut être fournie. On va recalculer les score de manière relative en sommant les scores bruts. et en rapportant cette somme au score.
+
+### Corrélation des séries
+
+```{r}
+M1<-subset(df_nrc, select=c( anger,disgust, fear, sadness ,surprise,anticipation,trust,joy))
+cor1 <- cor(M1)
+library(corrplot)
+corrplot.mixed(cor1)
+```
+
+***
+
+Nos séries sont-elles corrélées ? Si elles le sont de manière instantanée c’est qu’elle partagent une cause commune.
+
+
+### Analyse factorielle
+
+```{r}
+fit <- factanal(M1, 2, rotation="promax")
+load <- fit$loadings[,1:2]
+plot(load,type="n") # set up plot
+text(load,labels=names(M1),cex=.7) # add variable names
+```
+
+
+***
+
+Une structure bifactorielle avec la surprise associée aux deux pôles positifs et négatifs : heureux/malheureux, joyeux/triste …
+
+
+Convergence des indicateurs {.storyboard}
+============================
+
+### Convergence des indicateurs
+```{r}
+# r_sent<-subset(df_nrc, select=c( negative,émonég,positive, émopos))
+r_sent<-subset(df_nrc, select=c( negative,positive))
+cor2 <- cor(r_sent)
+corrplot.mixed(cor2)
+```
+
+*** 
+
+### Facettes et sentiments
+
+```{r}
+M1<-subset(df_nrc, select=c(negative,anger,disgust, fear, sadness,surprise,anticipation,trust,joy,positive))
+cor1 <- cor(M1)
+#M2<-subset(df_nrc, select=c( alimentation,sexualité, santé,corps,ami, famille, humain))
+#cor2 <- cor(M2)
+library(corrplot)
+corrplot.mixed(cor1, order = "hclust", addrect = 2)
+```
+
+***
+
+Regardons les relations entre émotions et expérience via https://jokergoo.github.io/ComplexHeatmap-reference/book/a-single-heatmap.html
+
+### Analyse Factorielle
+
+```{r}
+fit <- factanal(M1,2, rotation="promax")
+#print(fit, digits=2, cutoff=.3, sort=TRUE)
+# plot factor 1 by factor 2
+load <- fit$loadings[,1:2]
+plot(load,type="n") # set up plot
+text(load,labels=names(M1),cex=.7) # add variable names
+```
+
+***
+
+### Corrélations entre les deux dimensions des émotions
+
+```{r}
+val<-29
+M1_1<-df_nrc %>% filter (Jour ==val) %>% select(negative,anger,disgust, fear, sadness)
+M1_2<-df_nrc %>% filter (Jour ==val) %>% select(positive,surprise,anticipation,trust,joy)
+#M1<-df_nrc %>% filter (Jour ==val) %>% select(negative,anger,disgust, fear, sadness,surprise,anticipation,trust,joy,positive)
+#M2<-df_nrc %>% filter (Jour ==val) %>% select( alimentation,sexualité, santé,corps,ami, famille, humain)
+cor3<-cor(x=M1_1,y=M1_2)
+library(data.table)
+cor3 <- reshape2::melt(cor3)
+g18<-ggplot(data = cor3, aes(x=Var1, y=Var2, fill=value)) + 
+    geom_tile()+ labs(title="Corrélations entre les domaines de l'expérience et les émotions",x="Sentiments", y="Domaines")+
+    scale_fill_gradient2(low = "blue", high = "red", mid = "white",midpoint = 0, limit = c(-0.3,0.3), space = "Lab",
+   name="Pearson\nCorrelation")
+g18
+```
+
+***
+
+### End
+```{r}
+ggplotly(g18)
+rm(list=ls())
+```
+
+End ;-)
+
+***
